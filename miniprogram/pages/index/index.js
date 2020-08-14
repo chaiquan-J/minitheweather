@@ -38,7 +38,7 @@ Page({
     weather: null,
     // 空气质量
     weatherair: null,
-    // 预警
+    // 是否有预警
     preliminary: false,
   },
 
@@ -114,7 +114,13 @@ Page({
     // console.log(data, datatype);
     let oldData = data;
     let newData;
+    let preliminary = this.data.preliminary;
     if (datatype == "weather") {
+      if (!oldData.alarm) {
+        console.log(oldData.alarm);
+        console.log(1);
+        preliminary = true;
+      }
       // let newData;
       oldData.forecast_1h = Object.values(oldData.forecast_1h);
       oldData.forecast_24h = Object.values(oldData.forecast_24h);
@@ -143,6 +149,7 @@ Page({
     }
     this.setData({
       [datatype]: newData,
+      preliminary: preliminary,
     });
   },
 

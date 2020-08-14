@@ -71,11 +71,20 @@
         </van-grid>
     </van-popup>
     <!-- 预警 -->
-    <view wx:if="{{true}}" class="prelimi_ciick" bindtap="showPrelim">
+    <view wx:if="{{preliminary}}" class="prelimi_ciick" bindtap="showPrelim">
         <view class="preli_round"></view>
         <view class="preli_title">{{weather.alarm[0].type_name}}预警</view>
     </view>
-    <van-popup show="{{ prelimshow }}" custom-class="preli_box" bind:close="onCloseprelim" close-on-click-overlay="{{false}}"></van-popup>
+    <van-popup show="{{ prelimshow }}" custom-class="preli_box" overlay-style="filter:blur;" close-on-click-overlay="{{false}}">
+        <view class="title_box">雷电黄色预警</view>
+        <view class="preli_detail">
+            南宁市气象台13日13时0分发布雷电
+            黄色预警信号:目前雷雨云团正逐
+            渐靠近南宁城区，预计未来6小时，
+            南宁城区自南向北将出现雷电，局地伴有短时强降水、大风，请注意防范。(预警信息来源：国家预警信息发布中心)
+        </view>
+        <van-button custom-class="perli_btn yellow" bind:click="onCloseprelim">我知道了</van-button>
+    </van-popup>
 </view>
 <!-- 顶部结束 -->
 <!-- 跳转外部app导航 -->
