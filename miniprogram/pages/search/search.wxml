@@ -1,0 +1,9 @@
+<!-- <view wx:if="{{setInfo}}">
+    <image class="" src="{{userInfo.avatarUrl}}" mode="" lazy-load="false" binderror="" bindload="" />
+    <view>{{userInfo.nickName}}</view>
+</view>
+<view wx:else>
+    <van-button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        登陆授权
+    </van-button>
+</view> -->

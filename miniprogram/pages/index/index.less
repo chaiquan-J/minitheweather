@@ -1,0 +1,398 @@
+page {
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+// 顶部样式
+.heard {
+  height: 735rpx;
+  width: 100%;
+  background-color: #43eb67;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  .top_address {
+    height: 80rpx;
+    width: 100%;
+    // background-color: #135197;
+    margin-bottom: 95rpx;
+    display: flex;
+    align-items: center;
+
+    .address_box {
+      height: 50rpx;
+      width: 365rpx;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+
+      .address_icon {
+        margin-top: 10rpx;
+        margin-right: 10rpx;
+      }
+
+      .address_text {
+        width: auto;
+        height: 45rpx;
+        color: #ffffff;
+        font-size: 35rpx;
+      }
+
+      image {
+        height: 15rpx;
+        width: 20rpx;
+        margin-top: 10rpx;
+        margin-left: 10rpx;
+      }
+    }
+  }
+
+  .heard_cont {
+    height: 258rpx;
+    width: 300rpx;
+    // background-color: #13ccbd;
+    margin-bottom: 40rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    .temperature_text {
+      width: 150rpx;
+      height: 135rpx;
+      font-size: 120rpx;
+      color: #ffffff;
+      text-align: center;
+      line-height: 135rpx;
+    }
+
+    .weather_text {
+      height: 50rpx;
+      width: auto;
+      color: #ffffff;
+      font-size: 45rpx;
+      line-height: 50rpx;
+    }
+
+    .Scrolling_box {
+      height: 50rpx;
+      width: 100%;
+      color: #ffffff;
+
+      .scrolling_swiper {
+        height: 100%;
+        width: 100%;
+
+        .scrolling_item {
+          height: 100%;
+          width: 100%;
+
+          .item_text {
+            line-height: 50rpx;
+            text-align: center;
+            font-size: 25rpx;
+          }
+        }
+      }
+    }
+  }
+
+  .announcement {
+    height: 50rpx;
+    width: auto;
+    // background-color: #8315b6;
+
+    .annou_bar {
+      height: 100%;
+      width: 450rpx;
+      border-radius: 50rpx;
+    }
+  }
+
+  .Popup_click {
+    height: 90rpx;
+    width: 85rpx;
+    background-color: #a3d765;
+    position: absolute;
+    top: 200rpx;
+    left: 15rpx;
+    border-radius: 10rpx;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25rpx;
+  }
+
+  .prelimi_ciick {
+    height: 45rpx;
+    width: auto;
+    background-color: #00000023;
+    position: absolute;
+    top: 220rpx;
+    right: 0;
+    border-radius: 30rpx 0rpx 0rpx 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    .preli_round {
+      height: 10rpx;
+      width: 10rpx;
+      border-radius: 50rpx;
+      background-color: yellow;
+      margin-left: 15rpx;
+      margin-right: 10rpx;
+    }
+
+    .preli_title {
+      font-size: 20rpx;
+      color: #ffffff;
+      margin-right: 20rpx;
+    }
+  }
+
+  .Popup_box {
+    height: 660rpx;
+    width: 500rpx;
+    border-radius: 10rpx;
+
+    .top_box {
+      height: 410rpx;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #d69393;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .air_text {
+        font-size: 25rpx;
+        color: #ffffff;
+        margin-bottom: 10rpx;
+      }
+
+      .air_Value {
+        font-size: 100rpx;
+        color: #ffffff;
+        margin-bottom: 10rpx;
+      }
+
+      .air_tag {
+        height: 45rpx;
+        width: 60rpx;
+        // color: #ffffff;
+        border-radius: 10rpx;
+        // text-align: center !important;
+
+        .tag_text {
+          height: 100%;
+          width: 40rpx;
+          margin: 0 auto;
+          text-align: center;
+          line-height: 41rpx;
+          font-size: 30rpx;
+        }
+      }
+    }
+  }
+}
+
+// 跳转样式
+.external_app {
+  height: 175rpx;
+  width: 100%;
+  background-color: #087495;
+  margin-bottom: 10rpx;
+
+  .external_grid {
+    height: 100%;
+    background-color: #ffffff;
+
+    .external_item {
+      height: 100%;
+    }
+
+    .external_icon {
+      height: 70rpx;
+      width: 70rpx;
+      margin-bottom: 10rpx;
+    }
+
+    .external_title {
+      font-size: 25rpx;
+    }
+  }
+}
+
+// 小预报
+.min_prediction {
+  height: 200rpx;
+  width: 100%;
+  margin-bottom: 10rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 30rpx;
+
+  .pred_cell {
+    width: 374rpx;
+    height: 150rpx;
+
+    .pred_title {
+      color: #9e9e9e;
+      margin-top: 10rpx;
+      font-size: 30rpx;
+    }
+
+    .pred_label {
+      margin-top: 15rpx;
+      color: #000000;
+      font-size: 30rpx;
+    }
+
+    .pred_value {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+
+      .pred_digital {
+        color: #000000;
+        margin-top: 10rpx;
+        font-size: 30rpx;
+      }
+
+      .pred_icon {
+        height: 50rpx;
+        width: 60rpx;
+
+        .pred_img {
+          height: 60rpx;
+          width: 60rpx;
+        }
+      }
+    }
+  }
+
+  .pred_h {
+    height: 120rpx;
+    width: 3rpx;
+    background-color: #cccccc;
+  }
+}
+
+// 轮播
+.advertising_swiper {
+  height: 190rpx;
+  width: 100%;
+  margin-bottom: 10rpx;
+  background-color: #ffffff;
+  border-radius: 20rpx;
+
+  .swiper_box {
+    height: 100%;
+    width: 100%;
+
+    .cont_box {
+      height: 150rpx;
+      width: 680rpx;
+      margin-left: 35rpx;
+      margin-top: 20rpx;
+      border-radius: 20rpx;
+      overflow: hidden;
+      background-color: #58ca75;
+
+      image {
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+// 准点预报样式
+.ontime_forecast {
+  height: 200rpx;
+  width: 100%;
+  margin-bottom: 10rpx;
+  background-color: #ffffff;
+  padding-top: 45rpx;
+
+  .ontime_cont_box {
+    height: 150rpx;
+    width: 100%;
+
+    .cont_scroll {
+      width: 100% !important;
+      height: 100%;
+      display: flex;
+      white-space: nowrap;
+      flex-direction: row;
+      align-items: center;
+
+      .cont_box {
+        height: 100%;
+        width: 100rpx;
+        text-align: center;
+        display: inline-block;
+        margin-right: 15rpx;
+        margin-left: 25rpx;
+
+        .forecast_box {
+          height: 100%;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: center;
+
+          .fore_time {
+            height: auto;
+            width: 100%;
+            text-align: center;
+            font-size: 25rpx;
+            color: #959595;
+          }
+
+          .fore_img {
+            height: 60rpx;
+            width: 60rpx;
+            margin-top: 10rpx;
+          }
+
+          .fore_temperature {
+            height: auto;
+            width: auto;
+            margin-left: 5rpx;
+            font-size: 28rpx;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
+
+.date_forecast {
+  height: 600rpx;
+  width: 100%;
+  margin-bottom: 10rpx;
+  background-color: #27dae0;
+}
+
+.life_card {
+  height: 300rpx;
+  width: 100%;
+  background-color: #33bdc2;
+  margin-bottom: 20rpx;
+}

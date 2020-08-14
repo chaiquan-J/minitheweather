@@ -1,0 +1,178 @@
+<!-- 顶部大模块 -->
+<view class="heard" hover-class="none" hover-stop-propagation="false">
+    <view class="top_address" hover-class="none" hover-stop-propagation="false">
+        <view class="address_box">
+            <van-icon name="location" size="35rpx" color="#ffff" custom-class="address_icon" />
+            <view class="address_text">{{positionData.city}} {{positionData.district}}</view>
+            <image class="" src="../../images/icon/down.png" mode="" lazy-load="false" binderror="" bindload="" />
+        </view>
+    </view>
+    <view class="heard_cont" hover-class="none" hover-stop-propagation="false">
+        <view class="temperature_text">{{weather.observe.degree}}°</view>
+        <view class="weather_text">{{weather.observe.weather}}</view>
+        <view class="Scrolling_box">
+            <swiper class="scrolling_swiper" easing-function="easeInOutCubic" autoplay="true" interval="5000" duration="1000" circular="true" vertical="true">
+                <swiper-item class="scrolling_item" catchtouchmove="prohibitSlide">
+                    <view class="item_text">
+                        {{weather.forecast_1h[0].wind_direction}} {{weather.observe.wind_power}}级
+                    </view>
+                </swiper-item>
+                <swiper-item class="scrolling_item" catchtouchmove="prohibitSlide">
+                    <view class="item_text">湿度 {{weather.observe.humidity}}%</view>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <view class="announcement" hover-class="none" hover-stop-propagation="false">
+        <van-notice-bar custom-class="annou_bar" background="#8f8f8f5d" color="#ffff" left-icon="volume-o" scrollable text="技术是开发它的人的共同灵魂。" />
+    </view>
+    <!-- 空气质量 -->
+    <view class="Popup_click" bindtap="showToppup">
+        <view>{{weatherair.air.aqi}}</view>
+        <view>{{weatherair.air.aqi_name}}</view>
+    </view>
+    <van-popup show="{{ topshow }}" custom-class="Popup_box" close-on-click-overlay="{{false}}" bind:close="onClosetop" closeable="{{true}}">
+        <view class="top_box">
+            <view class="air_text">空气质量指数</view>
+            <view class="air_Value">{{weatherair.air.aqi}}</view>
+            <van-tag custom-class="air_tag" text-color="#ffff" color="#A3D765">
+                <view class="tag_text">{{weatherair.air.aqi_name}}</view>
+            </van-tag>
+        </view>
+        <van-grid column-num="3" center>
+            <van-grid-item use-slot text-class="quality_title">
+                <view style="font-size: 25rpx;margin-bottom: 5rpx;">
+                    {{weatherair.air["pm2.5"]}}
+                </view>
+                <view style="font-size: 25rpx;color: #d1d1d1;">PM2.5</view>
+            </van-grid-item>
+            <van-grid-item use-slot text-class="quality_title">
+                <view style="font-size: 25rpx;margin-bottom: 5rpx;">
+                    {{weatherair.air["pm10"]}}
+                </view>
+                <view style="font-size: 25rpx;color: #d1d1d1;">PM10</view>
+            </van-grid-item>
+            <van-grid-item use-slot text-class="quality_title">
+                <view style="font-size: 25rpx;margin-bottom: 5rpx;">{{weatherair.air["so2"]}}</view>
+                <view style="font-size: 25rpx;color: #d1d1d1;">SO2</view>
+            </van-grid-item>
+            <van-grid-item use-slot text-class="quality_title">
+                <view style="font-size: 25rpx;margin-bottom: 5rpx;">{{weatherair.air["no2"]}}</view>
+                <view style="font-size: 25rpx;color: #d1d1d1;">NO2</view>
+            </van-grid-item>
+            <van-grid-item use-slot text-class="quality_title">
+                <view style="font-size: 25rpx;margin-bottom: 5rpx;">{{weatherair.air["o3"]}}</view>
+                <view style="font-size: 25rpx;color: #d1d1d1;">O3</view>
+            </van-grid-item>
+            <van-grid-item use-slot text-class="quality_title">
+                <view style="font-size: 25rpx;margin-bottom: 5rpx;">{{weatherair.air["co"]}}</view>
+                <view style="font-size: 25rpx;color: #d1d1d1;">CO</view>
+            </van-grid-item>
+        </van-grid>
+    </van-popup>
+    <!-- 预警 -->
+    <view wx:if="{{true}}" class="prelimi_ciick" bindtap="showPrelim">
+        <view class="preli_round"></view>
+        <view class="preli_title">{{weather.alarm[0].type_name}}预警</view>
+    </view>
+    <van-popup show="{{ prelimshow }}" custom-class="preli_box" bind:close="onCloseprelim" close-on-click-overlay="{{false}}"></van-popup>
+</view>
+<!-- 顶部结束 -->
+<!-- 跳转外部app导航 -->
+<view class="external_app" hover-class="none" hover-stop-propagation="false">
+    <van-grid center border="{{ false }}" gutter="{{ 20 }}" custom-class="external_grid">
+        <block wx:for="{{external}}">
+            <van-grid-item custom-class="external_item" use-slot>
+                <image class="external_icon" src="{{item.url}}" mode="" />
+                <view class="external_title">{{item.title}}</view>
+            </van-grid-item>
+        </block>
+    </van-grid>
+</view>
+<!-- 跳转结束 -->
+<!-- 小预报开始 -->
+<view class="min_prediction" hover-class="none" hover-stop-propagation="false">
+    <van-cell custom-class="pred_cell" border="{{false}}" use-label-slot>
+        <view slot="title" class="">
+            <view class="pred_title">今天</view>
+        </view>
+        <view slot="label">
+            <view class="pred_label" wx:if="{{weather.forecast_24h[1].day_weather == weather.forecast_24h[1].night_weather}}">
+                {{weather.forecast_24h[1].day_weather}}
+            </view>
+            <view class="pred_label" wx:else>
+                {{weather.forecast_24h[1].day_weather}}转{{weather.forecast_24h[1].night_weather}}
+            </view>
+        </view>
+        <view slot="" class="pred_value">
+            <view class="pred_digital">
+                {{weather.forecast_24h[1].max_degree}}/{{weather.forecast_24h[1].min_degree}}°C
+            </view>
+            <view class="pred_icon">
+                <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[1].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+            </view>
+        </view>
+    </van-cell>
+    <view class="pred_h" hover-class="none" hover-stop-propagation="false"></view>
+    <van-cell custom-class="pred_cell" border="{{false}}" use-label-slot>
+        <view slot="title" class="">
+            <view class="pred_title">明天</view>
+        </view>
+        <view slot="label">
+            <view class="pred_label" wx:if="{{weather.forecast_24h[2].day_weather == weather.forecast_24h[2].night_weather}}">
+                {{weather.forecast_24h[2].day_weather}}
+            </view>
+            <view class="pred_label" wx:else>
+                {{weather.forecast_24h[2].day_weather}}转{{weather.forecast_24h[2].night_weather}}
+            </view>
+        </view>
+        <view slot="" class="pred_value">
+            <view class="pred_digital">
+                {{weather.forecast_24h[2].max_degree}}/{{weather.forecast_24h[2].min_degree}}°C
+            </view>
+            <view class="pred_icon">
+                <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[2].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+            </view>
+        </view>
+    </van-cell>
+</view>
+<!-- 小预报结束 -->
+<!-- 广告轮播开始 -->
+<view class="advertising_swiper" hover-class="none" hover-stop-propagation="false">
+    <swiper class="swiper_box" autoplay="true" interval="3000" duration="1000">
+        <block wx:for="{{3}}">
+            <swiper-item class="" item-id="">
+                <view class="cont_box" hover-class="none" hover-stop-propagation="false">
+                    <image class="" src="../../images/u=1244286204,555904141&fm=26&gp=0.png" mode="aspectFill" lazy-load="false" binderror="" bindload=""></image>
+                </view>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
+<!-- 广告轮播结束 -->
+<!-- 准点预报 -->
+<view class="ontime_forecast" hover-class="none" hover-stop-propagation="false">
+    <view class="ontime_cont_box">
+        <scroll-view class="cont_scroll" scroll-x="true">
+            <block wx:for="{{weather.forecast_1h}}" wx:if="{{index < 25}}">
+                <view class="cont_box">
+                    <view class="forecast_box">
+                        <view class="fore_time" wx:if="{{item.nwetimeh == 00}}">明天</view>
+                        <view class="fore_time" wx:else>{{item.nwetimeh}}:00</view>
+                        <image class="fore_img" wx:if="{{item.nwetimeh>06 && item.nwetimeh < 19}}" src="../../images/icon/{{item.weather}}-0.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:elif="{{item.nwetimeh>00 && item.nwetimeh < 07}}" src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:else src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
+                        <view class="fore_temperature">{{item.degree}}°</view>
+                    </view>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+</view>
+<!-- 准点预报结束 -->
+<!-- 日期预报 -->
+<view class="date_forecast" hover-class="none" hover-stop-propagation="false"></view>
+<!-- 日期预报结束 -->
+<!-- 生活卡片 -->
+<view class="life_card" hover-class="none" hover-stop-propagation="false"></view>
+<!-- 生活卡片结束 -->
