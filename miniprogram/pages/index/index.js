@@ -117,13 +117,14 @@ Page({
     let preliminary = this.data.preliminary;
     if (datatype == "weather") {
       if (!oldData.alarm) {
-        console.log(oldData.alarm);
-        console.log(1);
+        // console.log(oldData.alarm);
+        // console.log(1);
         preliminary = true;
       }
       // let newData;
       oldData.forecast_1h = Object.values(oldData.forecast_1h);
       oldData.forecast_24h = Object.values(oldData.forecast_24h);
+
       let len_1h = oldData.forecast_1h.length;
       let len_24h = oldData.forecast_24h.length;
 
@@ -141,16 +142,25 @@ Page({
           8,
           10
         );
+        oldData.forecast_24h[i].week = this.modifyweek(oldData.forecast_24h[i].time);
       }
       newData = oldData;
-      console.log(newData);
+      // console.log(week)
     } else {
       newData = oldData;
     }
+    console.log(newData);
     this.setData({
       [datatype]: newData,
       preliminary: preliminary,
     });
+  },
+
+  // 添加星期
+  modifyweek: function (time) {
+    var dt = new Date(time.replace(/-/g, '/'));
+    var a = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    return a[dt.getDay()];
   },
 
   // 顶部弹出层
@@ -178,35 +188,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 });

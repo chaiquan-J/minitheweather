@@ -90,7 +90,7 @@
 <!-- 跳转外部app导航 -->
 <view class="external_app" hover-class="none" hover-stop-propagation="false">
     <van-grid center border="{{ false }}" gutter="{{ 20 }}" custom-class="external_grid">
-        <block wx:for="{{external}}">
+        <block wx:for="{{external}}" wx:key="title">
             <van-grid-item custom-class="external_item" use-slot>
                 <image class="external_icon" src="{{item.url}}" mode="" />
                 <view class="external_title">{{item.title}}</view>
@@ -149,7 +149,7 @@
 <!-- 广告轮播开始 -->
 <view class="advertising_swiper" hover-class="none" hover-stop-propagation="false">
     <swiper class="swiper_box" autoplay="true" interval="3000" duration="1000">
-        <block wx:for="{{3}}">
+        <block wx:for="{{3}}" wx:key="*this">
             <swiper-item class="" item-id="">
                 <view class="cont_box" hover-class="none" hover-stop-propagation="false">
                     <image class="" src="../../images/u=1244286204,555904141&fm=26&gp=0.png" mode="aspectFill" lazy-load="false" binderror="" bindload=""></image>
@@ -163,7 +163,7 @@
 <view class="ontime_forecast" hover-class="none" hover-stop-propagation="false">
     <view class="ontime_cont_box">
         <scroll-view class="cont_scroll" scroll-x="true">
-            <block wx:for="{{weather.forecast_1h}}" wx:if="{{index < 25}}">
+            <block wx:for="{{weather.forecast_1h}}" wx:key="index" wx:if="{{index < 25}}">
                 <view class="cont_box">
                     <view class="forecast_box">
                         <view class="fore_time" wx:if="{{item.nwetimeh == 00}}">明天</view>
@@ -180,7 +180,48 @@
 </view>
 <!-- 准点预报结束 -->
 <!-- 日期预报 -->
-<view class="date_forecast" hover-class="none" hover-stop-propagation="false"></view>
+<view class="date_forecast" hover-class="none" hover-stop-propagation="false">
+    <view class="highesttemp_box">
+        <view class="highesttemp_cont">
+            <block wx:for="{{weather.forecast_24h}}" wx:key="time" wx:if="{{index<6}}">
+                <view class="cont_box">
+                    <view class="title_box">
+                        <view wx:if="{{index == 0}}">昨天</view>
+                        <view wx:elif="{{index == 1}}">今天</view>
+                        <view wx:elif="{{index == 2}}">明天</view>
+                        <view wx:elif="{{index == 3}}">后天</view>
+                        <view wx:elif="{{index == 4}}">{{item.week}}</view>
+                        <view wx:else>{{item.week}}</view>
+                        <view>{{item.month}}/{{item.date}}</view>
+                    </view>
+                    <view wx:if="{{index == 0}}" class="weather_text" style="color:#898989;">
+                        {{item.day_weather}}
+                    </view>
+                    <view wx:else class="weather_text">{{item.day_weather}}</view>
+                    <image class="weather_img" src="../../images/icon/{{item.day_weather}}-0.png" />
+                </view>
+            </block>
+        </view>
+    </view>
+    <view class="Polyline_box"></view>
+    <view class="lowesttemp_box">
+        <view class="lowesttemp_cont">
+            <block wx:for="{{weather.forecast_24h}}" wx:key="time" wx:if="{{index<6}}">
+                <view class="cont_box">
+                    <view class="title_box">
+                        <view>{{item.night_wind_direction}}</view>
+                        <view>{{item.night_wind_power}}级</view>
+                    </view>
+                    <view wx:if="{{index == 0}}" class="weather_text" style="color:#898989;">
+                        {{item.night_weather}}
+                    </view>
+                    <view wx:else class="weather_text">{{item.night_weather}}</view>
+                    <image class="weather_img" src="../../images/icon/{{item.night_weather}}-1.png" />
+                </view>
+            </block>
+        </view>
+    </view>
+</view>
 <!-- 日期预报结束 -->
 <!-- 生活卡片 -->
 <view class="life_card" hover-class="none" hover-stop-propagation="false"></view>

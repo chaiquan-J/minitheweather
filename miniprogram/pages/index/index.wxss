@@ -362,10 +362,87 @@ page {
   text-align: center;
 }
 .date_forecast {
-  height: 600rpx;
+  height: auto;
   width: 100%;
   margin-bottom: 10rpx;
   background-color: #27dae0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.date_forecast .weather_img {
+  height: 60rpx;
+  width: 60rpx;
+}
+.date_forecast .title_box {
+  height: 65rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 25rpx;
+  color: #898989;
+}
+.date_forecast .weather_text {
+  height: auto;
+  width: 100%;
+  color: #333333;
+  text-align: center;
+}
+.date_forecast .highesttemp_box {
+  height: 305rpx;
+  width: 100%;
+  background-color: #eeffb5;
+  display: flex;
+  align-items: center;
+}
+.date_forecast .highesttemp_box .highesttemp_cont {
+  height: 215rpx;
+  width: 100%;
+  background-color: #22e63c;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.date_forecast .highesttemp_box .highesttemp_cont .cont_box {
+  height: 100%;
+  width: 100rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.date_forecast .Polyline_box {
+  height: 250rpx;
+  width: 100%;
+  background-color: #bd9103;
+}
+.date_forecast .lowesttemp_box {
+  height: 305rpx;
+  width: 100%;
+  background-color: #c32be9;
+  display: flex;
+  align-items: center;
+}
+.date_forecast .lowesttemp_box .lowesttemp_cont {
+  height: 215rpx;
+  width: 100%;
+  background-color: #22e63c;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.date_forecast .lowesttemp_box .lowesttemp_cont .cont_box {
+  height: 100%;
+  width: 100rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: space-between;
 }
 .life_card {
   height: 300rpx;
