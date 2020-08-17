@@ -40,6 +40,8 @@ Page({
     weatherair: null,
     // 是否有预警
     preliminary: false,
+    // 预警颜色
+    prelicolor: ""
   },
 
   /**
@@ -64,7 +66,7 @@ Page({
     });
   },
 
-  // 测试获取天气数据
+  // 获取天气数据
   getApi: function (prov, city, county, type, dataType, setfun) {
     let _this = this;
     wx.request({
@@ -115,10 +117,16 @@ Page({
     let oldData = data;
     let newData;
     let preliminary = this.data.preliminary;
+    let prelicolor = this.data.prelicolor
     if (datatype == "weather") {
-      if (!oldData.alarm) {
+      if (oldData.alarm != {}) {
         // console.log(oldData.alarm);
         // console.log(1);
+        if (oldData.alarm[0].level_name == "蓝色") {
+          prelicolor = "blue"
+        } else {
+          prelicolor = "yellow"
+        }
         preliminary = true;
       }
       // let newData;
@@ -152,6 +160,7 @@ Page({
     console.log(newData);
     this.setData({
       [datatype]: newData,
+      prelicolor: prelicolor,
       preliminary: preliminary,
     });
   },
