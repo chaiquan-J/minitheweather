@@ -41,7 +41,7 @@ Page({
     // 是否有预警
     preliminary: false,
     // 预警颜色
-    prelicolor: ""
+    prelicolor: "",
   },
 
   /**
@@ -117,16 +117,16 @@ Page({
     let oldData = data;
     let newData;
     let preliminary = this.data.preliminary;
-    let prelicolor = this.data.prelicolor
+    let prelicolor = this.data.prelicolor;
     if (datatype == "weather") {
-      if (oldData.alarm != {}) {
+      if (oldData.alarm) {
         // console.log(oldData.alarm);
         // console.log(1);
-        if (oldData.alarm[0].level_name == "蓝色") {
-          prelicolor = "blue"
-        } else {
-          prelicolor = "yellow"
-        }
+        // if (oldData.alarm[0].level_name == "蓝色") {
+        //   prelicolor = "blue";
+        // } else {
+        //   prelicolor = "yellow";
+        // }
         preliminary = true;
       }
       // let newData;
@@ -150,7 +150,9 @@ Page({
           8,
           10
         );
-        oldData.forecast_24h[i].week = this.modifyweek(oldData.forecast_24h[i].time);
+        oldData.forecast_24h[i].week = this.modifyweek(
+          oldData.forecast_24h[i].time
+        );
       }
       newData = oldData;
       // console.log(week)
@@ -167,8 +169,8 @@ Page({
 
   // 添加星期
   modifyweek: function (time) {
-    var dt = new Date(time.replace(/-/g, '/'));
-    var a = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    var dt = new Date(time.replace(/-/g, "/"));
+    var a = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"];
     return a[dt.getDay()];
   },
 
@@ -197,35 +199,35 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () { },
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () { },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () { },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () { },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () { },
+  onPullDownRefresh: function () {},
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () { },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () { },
+  onShareAppMessage: function () {},
 });
