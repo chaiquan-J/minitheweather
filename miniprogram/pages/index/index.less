@@ -52,6 +52,25 @@ page {
     }
   }
 
+  .publish_time {
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+    position: absolute;
+    top: 80rpx;
+    left: auto;
+    right: auto;
+    color: #ffffff;
+    font-size: 25rpx;
+    transition: all 0.5s;
+  }
+
+  .hidden_time {
+    top: 60rpx;
+    opacity: 0;
+    // display: none;
+  }
+
   .heard_cont {
     height: 258rpx;
     width: 300rpx;
@@ -195,7 +214,6 @@ page {
       margin-bottom: 35rpx;
       font-size: 30rpx;
     }
-
   }
 
   .yellow {
@@ -203,7 +221,7 @@ page {
   }
 
   .blue {
-    background-color: #7CA0EC;
+    background-color: #7ca0ec;
   }
 
   .Popup_box {
@@ -322,6 +340,7 @@ page {
       .pred_icon {
         height: 50rpx;
         width: 60rpx;
+        margin-top: 10rpx;
 
         .pred_img {
           height: 60rpx;
@@ -370,12 +389,30 @@ page {
 
 // 准点预报样式
 .ontime_forecast {
-  height: 265rpx;
+  height: 270rpx;
   width: 100%;
   margin-bottom: 10rpx;
   background-color: #ffffff;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+
+  .sun_setrise_box {
+    height: 80rpx;
+    width: 350rpx;
+    background-color: #15b39e;
+    margin-left: 35rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .sunrise {
+      height: 100%;
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+  }
 
   .ontime_cont_box {
     height: 150rpx;

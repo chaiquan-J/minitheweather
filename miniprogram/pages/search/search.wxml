@@ -7,3 +7,4 @@
         登陆授权
     </van-button>
 </view> -->
+<canvas type="2d" id="myCanvas"></canvas>

@@ -7,6 +7,9 @@
             <image class="" src="../../images/icon/down.png" mode="" lazy-load="false" binderror="" bindload="" />
         </view>
     </view>
+    <view class="publish_time {{nonetime}}" hover-class="none" hover-stop-propagation="false">
+        中央气象台 13:50发布
+    </view>
     <view class="heard_cont" hover-class="none" hover-stop-propagation="false">
         <view class="temperature_text">{{weather.observe.degree}}°</view>
         <view class="weather_text">{{weather.observe.weather}}</view>
@@ -112,14 +115,24 @@
                 {{weather.forecast_24h[1].day_weather}}转{{weather.forecast_24h[1].night_weather}}
             </view>
         </view>
-        <view slot="" class="pred_value">
-            <view class="pred_digital">
-                {{weather.forecast_24h[1].max_degree}}/{{weather.forecast_24h[1].min_degree}}°C
+        <block wx:if="{{weather}}">
+            <view slot="" class="pred_value">
+                <view class="pred_digital">
+                    {{weather.forecast_24h[1].max_degree}}/{{weather.forecast_24h[1].min_degree}}°C
+                </view>
+                <view class="pred_icon">
+                    <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[1].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                </view>
             </view>
-            <view class="pred_icon">
-                <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[1].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+        </block>
+        <block wx:else>
+            <view slot="" class="pred_value">
+                <view class="pred_digital">19/25°C</view>
+                <view class="pred_icon">
+                    <image class="pred_img" style="" src="../../images/icon/多云-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                </view>
             </view>
-        </view>
+        </block>
     </van-cell>
     <view class="pred_h" hover-class="none" hover-stop-propagation="false"></view>
     <van-cell custom-class="pred_cell" border="{{false}}" use-label-slot>
@@ -134,14 +147,24 @@
                 {{weather.forecast_24h[2].day_weather}}转{{weather.forecast_24h[2].night_weather}}
             </view>
         </view>
-        <view slot="" class="pred_value">
-            <view class="pred_digital">
-                {{weather.forecast_24h[2].max_degree}}/{{weather.forecast_24h[2].min_degree}}°C
+        <block wx:if="{{weather}}">
+            <view slot="" class="pred_value">
+                <view class="pred_digital">
+                    {{weather.forecast_24h[2].max_degree}}/{{weather.forecast_24h[2].min_degree}}°C
+                </view>
+                <view class="pred_icon">
+                    <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[2].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                </view>
             </view>
-            <view class="pred_icon">
-                <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[2].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+        </block>
+        <block wx:else>
+            <view slot="" class="pred_value">
+                <view class="pred_digital">19/25°C</view>
+                <view class="pred_icon">
+                    <image class="pred_img" style="" src="../../images/icon/多云-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                </view>
             </view>
-        </view>
+        </block>
     </van-cell>
 </view>
 <!-- 小预报结束 -->
@@ -160,6 +183,18 @@
 <!-- 广告轮播结束 -->
 <!-- 准点预报 -->
 <view class="ontime_forecast" hover-class="none" hover-stop-propagation="false">
+    <view class="sun_setrise_box" hover-class="none" hover-stop-propagation="false">
+        <view class="sunrise" hover-class="none" hover-stop-propagation="false">
+            <view class="" hover-class="none" hover-stop-propagation="false">日出</view>
+            <image class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+            <text class="" selectable="false" space="false" decode="false"></text>
+        </view>
+        <view class="sunset" hover-class="none" hover-stop-propagation="false">
+            <view class="" hover-class="none" hover-stop-propagation="false">日落</view>
+            <image class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
+            <text class="" selectable="false" space="false" decode="false"></text>
+        </view>
+    </view>
     <view class="ontime_cont_box">
         <scroll-view class="cont_scroll" scroll-x="true">
             <block wx:for="{{weather.forecast_1h}}" wx:key="index" wx:if="{{index < 25}}">

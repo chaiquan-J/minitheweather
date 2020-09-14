@@ -42,6 +42,8 @@ Page({
     preliminary: false,
     // 预警颜色
     prelicolor: "",
+    // 发布时间
+    nonetime: "",
   },
 
   /**
@@ -49,6 +51,7 @@ Page({
    */
   onLoad: function (options) {
     utils.getUserstatus(this.formSubmit, this.setPositi);
+    this.hiddenTime();
   },
 
   // 使用腾讯提供的方法把用户位置用文字显示
@@ -118,15 +121,22 @@ Page({
     let newData;
     let preliminary = this.data.preliminary;
     let prelicolor = this.data.prelicolor;
+    // 判断是空气质量还是天气数据
     if (datatype == "weather") {
-      if (oldData.alarm) {
+      let alarm = oldData.alarm;
+      // 判断是否有天气预警
+      if (!JSON.stringify(alarm) == "{}") {
         // console.log(oldData.alarm);
-        // console.log(1);
-        // if (oldData.alarm[0].level_name == "蓝色") {
-        //   prelicolor = "blue";
-        // } else {
-        //   prelicolor = "yellow";
-        // }
+        switch (oldData.alarm[0].level_name) {
+          case "蓝色":
+            prelicolor = "blue";
+            break;
+          case "黄色":
+            prelicolor = "yellow";
+            break;
+          default:
+            prelicolor = "blue";
+        }
         preliminary = true;
       }
       // let newData;
@@ -135,12 +145,15 @@ Page({
 
       let len_1h = oldData.forecast_1h.length;
       let len_24h = oldData.forecast_24h.length;
+      let update_time = oldData.observe.update_time;
 
+      // 处理24小时时间
       for (let i = 0; i < len_1h; i++) {
         oldData.forecast_1h[i].nwetimeh = oldData.forecast_1h[
           i
         ].update_time.substring(8, 10);
       }
+      // 处理一周时间
       for (let i = 0; i < len_24h; i++) {
         oldData.forecast_24h[i].month = oldData.forecast_24h[i].time.substring(
           5,
@@ -154,12 +167,20 @@ Page({
           oldData.forecast_24h[i].time
         );
       }
+      // 处理发布时间
+      let update_time_h = update_time.substring(8, 10);
+      let update_time_m = update_time.substring(10, 12);
+      oldData.observe.newtime = `${update_time_h}:${update_time_m}`;
+
+      // 处理完成赋值给新变量
       newData = oldData;
+      // console.log(newData.observe.newtime);
       // console.log(week)
     } else {
       newData = oldData;
     }
     console.log(newData);
+    // console.log(newData.index);
     this.setData({
       [datatype]: newData,
       prelicolor: prelicolor,
@@ -195,6 +216,13 @@ Page({
   // 禁止用户滑动
   prohibitSlide: function (e) {
     return false;
+  },
+
+  // 隐藏发布时间
+  hiddenTime: function (e) {
+    setTimeout(() => {
+      this.setData({ nonetime: "hidden_time" });
+    }, 5000);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

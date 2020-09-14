@@ -44,6 +44,22 @@ page {
   margin-top: 10rpx;
   margin-left: 10rpx;
 }
+.heard .publish_time {
+  height: auto;
+  width: auto;
+  margin: 0 auto;
+  position: absolute;
+  top: 80rpx;
+  left: auto;
+  right: auto;
+  color: #ffffff;
+  font-size: 25rpx;
+  transition: all 0.5s;
+}
+.heard .hidden_time {
+  top: 60rpx;
+  opacity: 0;
+}
 .heard .heard_cont {
   height: 258rpx;
   width: 300rpx;
@@ -174,7 +190,7 @@ page {
   background-color: #f4d271;
 }
 .heard .blue {
-  background-color: #7CA0EC;
+  background-color: #7ca0ec;
 }
 .heard .Popup_box {
   height: 660rpx;
@@ -273,6 +289,7 @@ page {
 .min_prediction .pred_cell .pred_value .pred_icon {
   height: 50rpx;
   width: 60rpx;
+  margin-top: 10rpx;
 }
 .min_prediction .pred_cell .pred_value .pred_icon .pred_img {
   height: 60rpx;
@@ -309,10 +326,26 @@ page {
   margin: 0 auto;
 }
 .ontime_forecast {
-  height: 265rpx;
+  height: 270rpx;
   width: 100%;
   margin-bottom: 10rpx;
   background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.ontime_forecast .sun_setrise_box {
+  height: 80rpx;
+  width: 350rpx;
+  background-color: #15b39e;
+  margin-left: 35rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ontime_forecast .sun_setrise_box .sunrise {
+  height: 100%;
+  flex: 1;
   display: flex;
   align-items: center;
 }
