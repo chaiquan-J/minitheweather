@@ -185,14 +185,14 @@
 <view class="ontime_forecast" hover-class="none" hover-stop-propagation="false">
     <view class="sun_setrise_box" hover-class="none" hover-stop-propagation="false">
         <view class="sunrise" hover-class="none" hover-stop-propagation="false">
-            <view class="" hover-class="none" hover-stop-propagation="false">日出</view>
-            <image class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
-            <text class="" selectable="false" space="false" decode="false"></text>
+            <image class="" src="../../images/icon/日出.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+            <text class="">日出</text>
+            <text class="">{{weather.rise[0].sunrise}}</text>
         </view>
         <view class="sunset" hover-class="none" hover-stop-propagation="false">
-            <view class="" hover-class="none" hover-stop-propagation="false">日落</view>
-            <image class="" src="" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""></image>
-            <text class="" selectable="false" space="false" decode="false"></text>
+            <image class="" src="../../images/icon/日落.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+            <text class="">日落</text>
+            <text class="">{{weather.rise[0].sunset}}</text>
         </view>
     </view>
     <view class="ontime_cont_box">
@@ -202,8 +202,8 @@
                     <view class="forecast_box">
                         <view class="fore_time" wx:if="{{item.nwetimeh == 00}}">明天</view>
                         <view class="fore_time" wx:else>{{item.nwetimeh}}:00</view>
-                        <image class="fore_img" wx:if="{{item.nwetimeh>06 && item.nwetimeh < 19}}" src="../../images/icon/{{item.weather}}-0.png" mode="" lazy-load="false" />
-                        <image class="fore_img" wx:elif="{{item.nwetimeh>00 && item.nwetimeh < 07}}" src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:if="{{item.nwetimeh>weather.rise[0].riseh && item.nwetimeh < weather.rise[0].seth}}" src="../../images/icon/{{item.weather}}-0.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:elif="{{item.nwetimeh>00 && item.nwetimeh < weather.rise[0].riseh}}" src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
                         <image class="fore_img" wx:else src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
                         <view class="fore_temperature">{{item.degree}}°</view>
                     </view>

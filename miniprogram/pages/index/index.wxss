@@ -332,13 +332,11 @@ page {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 .ontime_forecast .sun_setrise_box {
   height: 80rpx;
-  width: 350rpx;
-  background-color: #15b39e;
-  margin-left: 35rpx;
+  width: 450rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -348,6 +346,38 @@ page {
   flex: 1;
   display: flex;
   align-items: center;
+  font-size: 25rpx;
+}
+.ontime_forecast .sun_setrise_box .sunrise image {
+  height: 50rpx;
+  width: 50rpx;
+}
+.ontime_forecast .sun_setrise_box .sunrise text:nth-child(2) {
+  font-weight: 600;
+  margin-left: 10rpx;
+}
+.ontime_forecast .sun_setrise_box .sunrise text:nth-child(3) {
+  color: #959595;
+  margin-left: 10rpx;
+}
+.ontime_forecast .sun_setrise_box .sunset {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 25rpx;
+}
+.ontime_forecast .sun_setrise_box .sunset image {
+  height: 50rpx;
+  width: 50rpx;
+}
+.ontime_forecast .sun_setrise_box .sunset text:nth-child(2) {
+  font-weight: 600;
+  margin-left: 10rpx;
+}
+.ontime_forecast .sun_setrise_box .sunset text:nth-child(3) {
+  color: #959595;
+  margin-left: 10rpx;
 }
 .ontime_forecast .ontime_cont_box {
   height: 150rpx;

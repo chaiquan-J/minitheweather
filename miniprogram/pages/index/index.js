@@ -172,6 +172,16 @@ Page({
       let update_time_m = update_time.substring(10, 12);
       oldData.observe.newtime = `${update_time_h}:${update_time_m}`;
 
+      // 处理日出日落
+      let sunrise = oldData.rise[0].sunrise;
+      let sunset = oldData.rise[0].sunset;
+      let riseh = sunrise.substring(0, 2);
+      let seth = sunset.substring(0, 2);
+
+      oldData.rise[0].riseh = riseh;
+
+      oldData.rise[0].seth = seth;
+
       // 处理完成赋值给新变量
       newData = oldData;
       // console.log(newData.observe.newtime);
