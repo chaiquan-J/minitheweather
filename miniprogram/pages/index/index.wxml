@@ -1,3 +1,6 @@
+<!-- 加载提示 -->
+<van-toast id="van-toast" />
+<!-- 加载提示 -->
 <!-- 顶部大模块 -->
 <view class="heard" hover-class="none" hover-stop-propagation="false">
     <view class="top_address" hover-class="none" hover-stop-propagation="false">
@@ -8,7 +11,7 @@
         </view>
     </view>
     <view class="publish_time {{nonetime}}" hover-class="none" hover-stop-propagation="false">
-        中央气象台 13:50发布
+        中央气象台 {{weather.observe.newtime}}发布
     </view>
     <view class="heard_cont" hover-class="none" hover-stop-propagation="false">
         <view class="temperature_text">{{weather.observe.degree}}°</view>
@@ -121,7 +124,7 @@
                     {{weather.forecast_24h[1].max_degree}}/{{weather.forecast_24h[1].min_degree}}°C
                 </view>
                 <view class="pred_icon">
-                    <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[1].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                    <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[1].dayimg}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
                 </view>
             </view>
         </block>
@@ -129,7 +132,7 @@
             <view slot="" class="pred_value">
                 <view class="pred_digital">19/25°C</view>
                 <view class="pred_icon">
-                    <image class="pred_img" style="" src="../../images/icon/多云-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                    <image class="pred_img" style="" src="../../images/icon/duoyun-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
                 </view>
             </view>
         </block>
@@ -153,7 +156,7 @@
                     {{weather.forecast_24h[2].max_degree}}/{{weather.forecast_24h[2].min_degree}}°C
                 </view>
                 <view class="pred_icon">
-                    <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[2].day_weather}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                    <image class="pred_img" style="" src="../../images/icon/{{weather.forecast_24h[2].dayimg}}-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
                 </view>
             </view>
         </block>
@@ -161,7 +164,7 @@
             <view slot="" class="pred_value">
                 <view class="pred_digital">19/25°C</view>
                 <view class="pred_icon">
-                    <image class="pred_img" style="" src="../../images/icon/多云-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+                    <image class="pred_img" style="" src="../../images/icon/duoyun-0.png" mode="" lazy-load="false" binderror="" bindload=""></image>
                 </view>
             </view>
         </block>
@@ -184,13 +187,14 @@
 <!-- 准点预报 -->
 <view class="ontime_forecast" hover-class="none" hover-stop-propagation="false">
     <view class="sun_setrise_box" hover-class="none" hover-stop-propagation="false">
+        <view class="title">逐时预报</view>
         <view class="sunrise" hover-class="none" hover-stop-propagation="false">
-            <image class="" src="../../images/icon/日出.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+            <image class="" src="../../images/icon/richu.png" mode="" lazy-load="false" binderror="" bindload=""></image>
             <text class="">日出</text>
             <text class="">{{weather.rise[0].sunrise}}</text>
         </view>
         <view class="sunset" hover-class="none" hover-stop-propagation="false">
-            <image class="" src="../../images/icon/日落.png" mode="" lazy-load="false" binderror="" bindload=""></image>
+            <image class="" src="../../images/icon/riluo.png" mode="" lazy-load="false" binderror="" bindload=""></image>
             <text class="">日落</text>
             <text class="">{{weather.rise[0].sunset}}</text>
         </view>
@@ -202,9 +206,9 @@
                     <view class="forecast_box">
                         <view class="fore_time" wx:if="{{item.nwetimeh == 00}}">明天</view>
                         <view class="fore_time" wx:else>{{item.nwetimeh}}:00</view>
-                        <image class="fore_img" wx:if="{{item.nwetimeh>weather.rise[0].riseh && item.nwetimeh < weather.rise[0].seth}}" src="../../images/icon/{{item.weather}}-0.png" mode="" lazy-load="false" />
-                        <image class="fore_img" wx:elif="{{item.nwetimeh>00 && item.nwetimeh < weather.rise[0].riseh}}" src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
-                        <image class="fore_img" wx:else src="../../images/icon/{{item.weather}}-1.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:if="{{item.nwetimeh>weather.rise[0].riseh && item.nwetimeh < weather.rise[0].seth}}" src="../../images/icon/{{item.weatherimg}}-0.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:elif="{{item.nwetimeh>00 && item.nwetimeh < weather.rise[0].riseh}}" src="../../images/icon/{{item.weatherimg}}-1.png" mode="" lazy-load="false" />
+                        <image class="fore_img" wx:else src="../../images/icon/{{item.weatherimg}}-1.png" mode="" lazy-load="false" />
                         <view class="fore_temperature">{{item.degree}}°</view>
                     </view>
                 </view>
@@ -232,12 +236,25 @@
                         {{item.day_weather}}
                     </view>
                     <view wx:else class="weather_text">{{item.day_weather}}</view>
-                    <image class="weather_img" src="../../images/icon/{{item.day_weather}}-0.png" />
+                    <image class="weather_img" src="../../images/icon/{{item.dayimg}}-0.png" />
                 </view>
             </block>
         </view>
     </view>
-    <view class="Polyline_box"></view>
+    <view class="Polyline_box">
+        <block wx:for="{{weather.forecast_24h}}" wx:key="{{index}}" wx:if="{{index<6}}">
+            <view class="Polyline_cont">
+                <view class="day">
+                    <view class="ball"></view>
+                    <view class="text">{{item.max_degree}}°</view>
+                </view>
+                <view class="night">
+                    <view class="ball"></view>
+                    <view class="text">{{item.min_degree}}°</view>
+                </view>
+            </view>
+        </block>
+    </view>
     <view class="lowesttemp_box">
         <view class="lowesttemp_cont">
             <block wx:for="{{weather.forecast_24h}}" wx:key="time" wx:if="{{index<6}}">
@@ -250,7 +267,7 @@
                         {{item.night_weather}}
                     </view>
                     <view wx:else class="weather_text">{{item.night_weather}}</view>
-                    <image class="weather_img" src="../../images/icon/{{item.night_weather}}-1.png" />
+                    <image class="weather_img" src="../../images/icon/{{item.nightimg}}-1.png" />
                 </view>
             </block>
         </view>

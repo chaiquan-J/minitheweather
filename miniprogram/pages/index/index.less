@@ -225,7 +225,7 @@ page {
   }
 
   .Popup_box {
-    height: 660rpx;
+    height: auto;
     width: 500rpx;
     border-radius: 10rpx;
 
@@ -395,14 +395,25 @@ page {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
 
   .sun_setrise_box {
     height: 80rpx;
-    width: 450rpx;
+    width: 480rpx;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-left: 20rpx;
+
+    .title {
+      height: 100%;
+      width: auto;
+      font-weight: 600;
+      line-height: 80rpx;
+      font-size: 25rpx;
+      color: #000000;
+      margin-right: 20rpx;
+    }
 
     .sunrise {
       height: 100%;
@@ -511,7 +522,7 @@ page {
   height: auto;
   width: 100%;
   margin-bottom: 10rpx;
-  background-color: #27dae0;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -542,16 +553,16 @@ page {
   }
 
   .highesttemp_box {
-    height: 305rpx;
+    height: 265rpx;
     width: 100%;
-    background-color: #eeffb5;
+    // background-color: #eeffb5;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
 
     .highesttemp_cont {
       height: 215rpx;
       width: 100%;
-      background-color: #22e63c;
+      // background-color: #22e63c;
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -571,22 +582,69 @@ page {
   }
 
   .Polyline_box {
-    height: 250rpx;
+    height: 220rpx;
     width: 100%;
-    background-color: #bd9103;
+    // background-color: #bd9103;
+    display: flex;
+    justify-content: space-around;
+
+    .Polyline_cont {
+      height: 100%;
+      width: 100rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+
+      .text {
+        height: auto;
+        width: auto;
+        font-weight: 600;
+      }
+
+      .day {
+        height: auto;
+        widows: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .ball {
+          height: 20rpx;
+          width: 20rpx;
+          border-radius: 100%;
+          background-color: #FFB74D;
+        }
+      }
+
+      .night {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .ball {
+          height: 20rpx;
+          width: 20rpx;
+          border-radius: 100%;
+          background-color: #4FC3F7;
+        }
+      }
+    }
   }
 
   .lowesttemp_box {
-    height: 305rpx;
+    height: 265rpx;
     width: 100%;
-    background-color: #c32be9;
+    // background-color: #c32be9;
     display: flex;
-    align-items: center;
+    // align-items: center;
 
     .lowesttemp_cont {
       height: 215rpx;
       width: 100%;
-      background-color: #22e63c;
+      // background-color: #22e63c;
       display: flex;
       align-items: center;
       justify-content: space-around;

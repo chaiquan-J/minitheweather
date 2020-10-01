@@ -1,9 +1,12 @@
 // miniprogram/pages/index/index.js
+// 腾讯地图api
 var QQMapWX = require("../../libs/qqmap-wx-jssdk.js");
 var qqmapsdk = new QQMapWX({
   key: "P6IBZ-OWZ3U-OE4VW-BEUKF-LKMH5-PDFJK", // 必填
 });
+// 共通方法
 const utils = require("../../utils/util.js");
+import Toast from '@vant/weapp/toast/toast';
 
 Page({
   /**
@@ -17,19 +20,19 @@ Page({
     external: [
       {
         title: "健康",
-        url: "../../images/icon/健康.png",
+        url: "../../images/icon/jiankang.png",
       },
       {
         title: "旅行",
-        url: "../../images/icon/旅行.png",
+        url: "../../images/icon/lvxing.png",
       },
       {
         title: "美食",
-        url: "../../images/icon/美食.png",
+        url: "../../images/icon/meishi.png",
       },
       {
         title: "种树",
-        url: "../../images/icon/种树.png",
+        url: "../../images/icon/zhongshu.png",
       },
     ],
     // 位置
@@ -52,6 +55,7 @@ Page({
   onLoad: function (options) {
     utils.getUserstatus(this.formSubmit, this.setPositi);
     this.hiddenTime();
+    this.showToast();
   },
 
   // 使用腾讯提供的方法把用户位置用文字显示
@@ -90,11 +94,15 @@ Page({
 
   // 处理位置数据
   setPositi: function (data) {
+    // 位置数据放到data中保存
     this.setData({
       positionData: data,
     });
+    // 把获取到位置数据存在中间变量
     let position = this.data.positionData;
     // 获取天气数据
+    // 请求两次是因为包含城区的天气数据不会带空气质量数据
+    // 参数只有城市时，才会有空气质量的数据
     this.getApi(
       position.province,
       position.city,
@@ -152,6 +160,81 @@ Page({
         oldData.forecast_1h[i].nwetimeh = oldData.forecast_1h[
           i
         ].update_time.substring(8, 10);
+
+        // 给24小时天气加上图片id属性
+        switch (oldData.forecast_1h[i].weather) {
+          case '晴':
+            oldData.forecast_1h[i].weatherimg = 'qing'
+            break;
+          case '多云':
+            oldData.forecast_1h[i].weatherimg = 'duoyun'
+            break;
+          case '阴':
+            oldData.forecast_1h[i].weatherimg = 'yin'
+            break;
+          case '小雨':
+            oldData.forecast_1h[i].weatherimg = 'xiaoyu'
+            break;
+          case '中雨':
+            oldData.forecast_1h[i].weatherimg = 'zhongyu'
+            break;
+          case '大雨':
+            oldData.forecast_1h[i].weatherimg = 'dayu'
+            break;
+          case '阵雨':
+            oldData.forecast_1h[i].weatherimg = 'zhenyu'
+            break;
+          case '暴雨':
+            oldData.forecast_1h[i].weatherimg = 'baoyu'
+            break;
+          case '大暴雨':
+            oldData.forecast_1h[i].weatherimg = 'dabaoyu'
+            break;
+          case '特大暴雨':
+            oldData.forecast_1h[i].weatherimg = 'tedabaoyu'
+            break;
+          case '雷阵雨':
+            oldData.forecast_1h[i].weatherimg = 'leizhenyu'
+            break;
+          case '雷阵雨伴冰雹':
+            oldData.forecast_1h[i].weatherimg = 'leizhenyubanbingbao'
+            break;
+          case '冻雨':
+            oldData.forecast_1h[i].weatherimg = 'dongyu'
+            break;
+          case '阵雪':
+            oldData.forecast_1h[i].weatherimg = 'zhenxue'
+            break;
+          case '小雪':
+            oldData.forecast_1h[i].weatherimg = 'xiaoxue'
+            break;
+          case '大雪':
+            oldData.forecast_1h[i].weatherimg = 'daxue'
+            break;
+          case '中雪':
+            oldData.forecast_1h[i].weatherimg = 'zhongxue'
+            break;
+          case '暴雪':
+            oldData.forecast_1h[i].weatherimg = 'baoxue'
+            break;
+          case '雾':
+            oldData.forecast_1h[i].weatherimg = 'wu'
+            break;
+          case '浮尘':
+            oldData.forecast_1h[i].weatherimg = 'fuchen'
+            break;
+          case '扬沙':
+            oldData.forecast_1h[i].weatherimg = 'yangsha'
+            break;
+          case '沙尘暴':
+            oldData.forecast_1h[i].weatherimg = 'shachenbao'
+            break;
+          case '强沙尘暴':
+            oldData.forecast_1h[i].weatherimg = 'qiangshachenbao'
+            break;
+          default:
+            oldData.forecast_1h[i].weatherimg = 'duoyun'
+        }
       }
       // 处理一周时间
       for (let i = 0; i < len_24h; i++) {
@@ -159,13 +242,163 @@ Page({
           5,
           7
         );
+
         oldData.forecast_24h[i].date = oldData.forecast_24h[i].time.substring(
           8,
           10
         );
+
         oldData.forecast_24h[i].week = this.modifyweek(
           oldData.forecast_24h[i].time
         );
+
+        switch (oldData.forecast_24h[i].day_weather) {
+          case '晴':
+            oldData.forecast_24h[i].dayimg = 'qing'
+            break;
+          case '多云':
+            oldData.forecast_24h[i].dayimg = 'duoyun'
+            break;
+          case '阴':
+            oldData.forecast_24h[i].dayimg = 'yin'
+            break;
+          case '小雨':
+            oldData.forecast_24h[i].dayimg = 'xiaoyu'
+            break;
+          case '中雨':
+            oldData.forecast_24h[i].dayimg = 'zhongyu'
+            break;
+          case '大雨':
+            oldData.forecast_24h[i].dayimg = 'dayu'
+            break;
+          case '阵雨':
+            oldData.forecast_24h[i].dayimg = 'zhenyu'
+            break;
+          case '暴雨':
+            oldData.forecast_24h[i].dayimg = 'baoyu'
+            break;
+          case '大暴雨':
+            oldData.forecast_24h[i].dayimg = 'dabaoyu'
+            break;
+          case '特大暴雨':
+            oldData.forecast_24h[i].dayimg = 'tedabaoyu'
+            break;
+          case '雷阵雨':
+            oldData.forecast_24h[i].dayimg = 'leizhenyu'
+            break;
+          case '雷阵雨伴冰雹':
+            oldData.forecast_24h[i].dayimg = 'leizhenyubanbingbao'
+            break;
+          case '冻雨':
+            oldData.forecast_24h[i].dayimg = 'dongyu'
+            break;
+          case '阵雪':
+            oldData.forecast_24h[i].dayimg = 'zhenxue'
+            break;
+          case '小雪':
+            oldData.forecast_24h[i].dayimg = 'xiaoxue'
+            break;
+          case '大雪':
+            oldData.forecast_24h[i].dayimg = 'daxue'
+            break;
+          case '中雪':
+            oldData.forecast_24h[i].dayimg = 'zhongxue'
+            break;
+          case '暴雪':
+            oldData.forecast_24h[i].dayimg = 'baoxue'
+            break;
+          case '雾':
+            oldData.forecast_24h[i].dayimg = 'wu'
+            break;
+          case '浮尘':
+            oldData.forecast_24h[i].dayimg = 'fuchen'
+            break;
+          case '扬沙':
+            oldData.forecast_24h[i].dayimg = 'yangsha'
+            break;
+          case '沙尘暴':
+            oldData.forecast_24h[i].dayimg = 'shachenbao'
+            break;
+          case '强沙尘暴':
+            oldData.forecast_24h[i].dayimg = 'qiangshachenbao'
+            break;
+          default:
+            oldData.forecast_24h[i].dayimg = 'duoyun'
+        }
+
+        switch (oldData.forecast_24h[i].night_weather) {
+          case '晴':
+            oldData.forecast_24h[i].nightimg = 'qing'
+            break;
+          case '多云':
+            oldData.forecast_24h[i].nightimg = 'duoyun'
+            break;
+          case '阴':
+            oldData.forecast_24h[i].nightimg = 'yin'
+            break;
+          case '小雨':
+            oldData.forecast_24h[i].nightimg = 'xiaoyu'
+            break;
+          case '中雨':
+            oldData.forecast_24h[i].nightimg = 'zhongyu'
+            break;
+          case '大雨':
+            oldData.forecast_24h[i].nightimg = 'dayu'
+            break;
+          case '阵雨':
+            oldData.forecast_24h[i].nightimg = 'zhenyu'
+            break;
+          case '暴雨':
+            oldData.forecast_24h[i].nightimg = 'baoyu'
+            break;
+          case '大暴雨':
+            oldData.forecast_24h[i].nightimg = 'dabaoyu'
+            break;
+          case '特大暴雨':
+            oldData.forecast_24h[i].nightimg = 'tedabaoyu'
+            break;
+          case '雷阵雨':
+            oldData.forecast_24h[i].nightimg = 'leizhenyu'
+            break;
+          case '雷阵雨伴冰雹':
+            oldData.forecast_24h[i].nightimg = 'leizhenyubanbingbao'
+            break;
+          case '冻雨':
+            oldData.forecast_24h[i].nightimg = 'dongyu'
+            break;
+          case '阵雪':
+            oldData.forecast_24h[i].nightimg = 'zhenxue'
+            break;
+          case '小雪':
+            oldData.forecast_24h[i].nightimg = 'xiaoxue'
+            break;
+          case '大雪':
+            oldData.forecast_24h[i].nightimg = 'daxue'
+            break;
+          case '中雪':
+            oldData.forecast_24h[i].nightimg = 'zhongxue'
+            break;
+          case '暴雪':
+            oldData.forecast_24h[i].nightimg = 'baoxue'
+            break;
+          case '雾':
+            oldData.forecast_24h[i].nightimg = 'wu'
+            break;
+          case '浮尘':
+            oldData.forecast_24h[i].nightimg = 'fuchen'
+            break;
+          case '扬沙':
+            oldData.forecast_24h[i].nightimg = 'yangsha'
+            break;
+          case '沙尘暴':
+            oldData.forecast_24h[i].nightimg = 'shachenbao'
+            break;
+          case '强沙尘暴':
+            oldData.forecast_24h[i].nightimg = 'qiangshachenbao'
+            break;
+          default:
+            oldData.forecast_24h[i].nightimg = 'duoyun'
+        }
       }
       // 处理发布时间
       let update_time_h = update_time.substring(8, 10);
@@ -187,15 +420,21 @@ Page({
       // console.log(newData.observe.newtime);
       // console.log(week)
     } else {
+      // 如果是天气质量直接赋值 不需要处理
       newData = oldData;
     }
     console.log(newData);
     // console.log(newData.index);
+    // 改变data中的数据
     this.setData({
       [datatype]: newData,
       prelicolor: prelicolor,
       preliminary: preliminary,
     });
+    // 关闭加载中
+    setTimeout(() => {
+      this.hiddenToast()
+    }, 500)
   },
 
   // 添加星期
@@ -213,6 +452,7 @@ Page({
   showPrelim: function () {
     this.setData({ prelimshow: true });
   },
+  // 顶部弹出层
 
   // 关闭弹出层
   onClosetop: function () {
@@ -222,6 +462,7 @@ Page({
   onCloseprelim: function () {
     this.setData({ prelimshow: false });
   },
+  // 关闭弹出层
 
   // 禁止用户滑动
   prohibitSlide: function (e) {
@@ -234,38 +475,53 @@ Page({
       this.setData({ nonetime: "hidden_time" });
     }, 5000);
   },
+
+  // 页面加载提示
+  showToast: function () {
+    Toast.loading({
+      message: '加载中',
+      forbidClick: true,
+      duration: 0,
+      mask: true
+    });
+  },
+
+  // 关闭提示
+  hiddenToast: function () {
+    Toast.clear()
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () { },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () { },
 });

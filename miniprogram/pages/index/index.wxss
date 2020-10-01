@@ -193,7 +193,7 @@ page {
   background-color: #7ca0ec;
 }
 .heard .Popup_box {
-  height: 660rpx;
+  height: auto;
   width: 500rpx;
   border-radius: 10rpx;
 }
@@ -332,14 +332,23 @@ page {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .ontime_forecast .sun_setrise_box {
   height: 80rpx;
-  width: 450rpx;
+  width: 480rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: 20rpx;
+}
+.ontime_forecast .sun_setrise_box .title {
+  height: 100%;
+  width: auto;
+  font-weight: 600;
+  line-height: 80rpx;
+  font-size: 25rpx;
+  color: #000000;
+  margin-right: 20rpx;
 }
 .ontime_forecast .sun_setrise_box .sunrise {
   height: 100%;
@@ -430,7 +439,7 @@ page {
   height: auto;
   width: 100%;
   margin-bottom: 10rpx;
-  background-color: #27dae0;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -457,16 +466,14 @@ page {
   text-align: center;
 }
 .date_forecast .highesttemp_box {
-  height: 305rpx;
+  height: 265rpx;
   width: 100%;
-  background-color: #eeffb5;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
 }
 .date_forecast .highesttemp_box .highesttemp_cont {
   height: 215rpx;
   width: 100%;
-  background-color: #22e63c;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -481,21 +488,58 @@ page {
   justify-content: space-between;
 }
 .date_forecast .Polyline_box {
-  height: 250rpx;
+  height: 220rpx;
   width: 100%;
-  background-color: #bd9103;
+  display: flex;
+  justify-content: space-around;
+}
+.date_forecast .Polyline_box .Polyline_cont {
+  height: 100%;
+  width: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.date_forecast .Polyline_box .Polyline_cont .text {
+  height: auto;
+  width: auto;
+  font-weight: 600;
+}
+.date_forecast .Polyline_box .Polyline_cont .day {
+  height: auto;
+  widows: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.date_forecast .Polyline_box .Polyline_cont .day .ball {
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 100%;
+  background-color: #FFB74D;
+}
+.date_forecast .Polyline_box .Polyline_cont .night {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.date_forecast .Polyline_box .Polyline_cont .night .ball {
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 100%;
+  background-color: #4FC3F7;
 }
 .date_forecast .lowesttemp_box {
-  height: 305rpx;
+  height: 265rpx;
   width: 100%;
-  background-color: #c32be9;
   display: flex;
-  align-items: center;
 }
 .date_forecast .lowesttemp_box .lowesttemp_cont {
   height: 215rpx;
   width: 100%;
-  background-color: #22e63c;
   display: flex;
   align-items: center;
   justify-content: space-around;

@@ -4,10 +4,10 @@
     "pages/search/search"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "杰哥天气",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "天气预报",
     "navigationBarTextStyle": "black"
   },
   "permission": {
@@ -26,6 +26,8 @@
     "van-notice-bar": "@vant/weapp/notice-bar/index",
     "van-grid": "@vant/weapp/grid/index",
     "van-grid-item": "@vant/weapp/grid-item/index",
-    "van-tag": "@vant/weapp/tag/index"
+    "van-tag": "@vant/weapp/tag/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "f2": "@antv/wx-f2"
   }
 }

@@ -75,7 +75,7 @@ function getUserposition(getpost) {
 }
 
 // 获取天气信息
-function getWeather() {}
+function getWeather() { }
 
 module.exports = {
   formatTime: formatTime,

@@ -1,13 +1,10 @@
 /* pages/search/search.wxss */
-.map_container {
-  height: 300px;
+.content {
+  height: 500rpx;
   width: 100%;
+  background-color: #8cec94;
 }
-.map {
+.content .f2-chart {
   height: 100%;
   width: 100%;
-}
-.echart_panel {
-  height: 500rpx;
-  width: 650rpx;
 }
