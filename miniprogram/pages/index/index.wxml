@@ -201,7 +201,7 @@
     </view>
     <view class="ontime_cont_box">
         <scroll-view class="cont_scroll" scroll-x="true">
-            <block wx:for="{{weather.forecast_1h}}" wx:key="index" wx:if="{{index < 25}}">
+            <block wx:for="{{weather.forecast_1h}}" wx:key="{{index}}" wx:if="{{index < 25}}">
                 <view class="cont_box">
                     <view class="forecast_box">
                         <view class="fore_time" wx:if="{{item.nwetimeh == 00}}">明天</view>
@@ -221,7 +221,7 @@
 <view class="date_forecast" hover-class="none" hover-stop-propagation="false">
     <view class="highesttemp_box">
         <view class="highesttemp_cont">
-            <block wx:for="{{weather.forecast_24h}}" wx:key="time" wx:if="{{index<6}}">
+            <block wx:for="{{weather.forecast_24h}}" wx:key="{{index}}" wx:if="{{index<6}}">
                 <view class="cont_box">
                     <view class="title_box">
                         <view wx:if="{{index == 0}}">昨天</view>
@@ -257,7 +257,7 @@
     </view>
     <view class="lowesttemp_box">
         <view class="lowesttemp_cont">
-            <block wx:for="{{weather.forecast_24h}}" wx:key="time" wx:if="{{index<6}}">
+            <block wx:for="{{weather.forecast_24h}}" wx:key="{{index}}" wx:if="{{index<6}}">
                 <view class="cont_box">
                     <view class="title_box">
                         <view>{{item.night_wind_direction}}</view>
@@ -275,5 +275,47 @@
 </view>
 <!-- 日期预报结束 -->
 <!-- 生活卡片 -->
-<view class="life_card" hover-class="none" hover-stop-propagation="false"></view>
+<view class="life_card" hover-class="none" hover-stop-propagation="false">
+    <view class="life_cont">
+        <swiper class="cont_swiper" indicator-dots="true" indicator-active-color="#BFBFBF" indicator-color="#E7E7E7" autoplay="{{false}}" duration="500" circular="{{false}}">
+            <swiper-item class="cont_item">
+                <van-grid custom-class="cont_grid" square column-num="4" border="{{ false }}">
+                    <van-grid-item use-slot wx:for="{{ weather.index }}" wx:if="{{id>=0&&id<=7}}" wx:for-index="id" wx:key="id">
+                        <view class="cont_box" bindtap="showLife" data-id="{{id}}">
+                            <image class="icon" src="../../images/icon/life/{{id}}.png" lazy-load="false" binderror="" bindload="" />
+                            <text class="" selectable="false" space="false" decode="false">
+                                {{item.info}}
+                            </text>
+                            <text class="" selectable="false" space="false" decode="false">
+                                {{item.name}}
+                            </text>
+                        </view>
+                    </van-grid-item>
+                </van-grid>
+            </swiper-item>
+            <swiper-item class="cont_item">
+                <van-grid custom-class="cont_grid" column-num="4" border="{{ false }}">
+                    <van-grid-item use-slot wx:for="{{ weather.index }}" wx:if="{{id>=8&&id<=15}}" wx:for-index="id">
+                        <view class="cont_box" bindtap="showLife" data-id="{{id}}">
+                            <image class="icon" src="../../images/icon/life/{{id}}.png" lazy-load="false" binderror="" bindload="" />
+                            <text class="" selectable="false" space="false" decode="false">
+                                {{item.info}}
+                            </text>
+                            <text class="" selectable="false" space="false" decode="false">
+                                {{item.name}}
+                            </text>
+                        </view>
+                    </van-grid-item>
+                </van-grid>
+            </swiper-item>
+        </swiper>
+        <van-popup show="{{ lifeshow }}" custom-class="preli_box" overlay-style="filter:blur;" close-on-click-overlay="{{false}}">
+            <view class="title_box {{lifecolor}}">{{weather.index[lifeid].name}}指数</view>
+            <view class="preli_detail">{{weather.index[lifeid].detail}}</view>
+            <van-button custom-class="perli_btn {{lifecolor}}" bind:click="onCloselife">
+                我知道了
+            </van-button>
+        </van-popup>
+    </view>
+</view>
 <!-- 生活卡片结束 -->

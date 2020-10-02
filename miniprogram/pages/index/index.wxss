@@ -201,7 +201,7 @@ page {
   height: 410rpx;
   width: 100%;
   margin: 0 auto;
-  background-color: #d69393;
+  background-color: #0aceff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -554,8 +554,129 @@ page {
   justify-content: space-between;
 }
 .life_card {
-  height: 300rpx;
+  height: 400rpx;
   width: 100%;
-  background-color: #33bdc2;
   margin-bottom: 20rpx;
+}
+.life_card .life_cont {
+  height: 100%;
+  width: 100%;
+}
+.life_card .life_cont .cont_swiper {
+  height: 100%;
+  width: 100%;
+}
+.life_card .life_cont .cont_swiper .cont_item {
+  height: 400rpx !important;
+  width: 100%;
+  background-color: #FFF;
+}
+.life_card .life_cont .cont_swiper .cont_item .cont_grid {
+  height: 100%;
+  width: 100%;
+}
+.life_card .life_cont .cont_swiper .cont_item .cont_grid .cont_box {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.life_card .life_cont .cont_swiper .cont_item .cont_grid .cont_box .icon {
+  height: 70rpx;
+  width: 70rpx;
+}
+.life_card .life_cont .cont_swiper .cont_item .cont_grid .cont_box text:nth-child(2) {
+  font-size: 26rpx;
+  color: #434343;
+  line-height: 15rpx;
+}
+.life_card .life_cont .cont_swiper .cont_item .cont_grid .cont_box text:nth-child(3) {
+  color: #989898;
+  font-size: 19rpx;
+  line-height: 18rpx;
+}
+.life_card .life_cont .preli_box {
+  height: auto;
+  width: 500rpx;
+  background-color: #ffffff;
+  border-radius: 15rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.life_card .life_cont .preli_box .title_box {
+  height: 115rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 35rpx;
+  line-height: 115rpx;
+  color: #ffffff;
+}
+.life_card .life_cont .preli_box .preli_detail {
+  height: auto;
+  width: 85%;
+  margin-top: 50rpx;
+  margin-bottom: 35rpx;
+  font-size: 28rpx;
+  color: #616161;
+  line-height: 50rpx;
+}
+.life_card .life_cont .preli_box .perli_btn {
+  height: 85rpx;
+  width: 400rpx;
+  margin: 0 auto;
+  color: #ffffff;
+  border-radius: 10rpx;
+  border: none;
+  margin-bottom: 35rpx;
+  font-size: 30rpx;
+}
+.life_card .life_cont .conditioner {
+  background-color: #F5EC41;
+}
+.life_card .life_cont .allergy {
+  background-color: #A5B1E0;
+}
+.life_card .life_cont .car {
+  background-color: #B5E5A7;
+}
+.life_card .life_cont .cold {
+  background-color: #21CEDA;
+}
+.life_card .life_cont .clad {
+  background-color: #E2A9C8;
+}
+.life_card .life_cont .influenza {
+  background-color: #E1CCA4;
+}
+.life_card .life_cont .comfort {
+  background-color: #A6C896;
+}
+.life_card .life_cont .air {
+  background-color: #C6A7AC;
+}
+.life_card .life_cont .traffic {
+  background-color: #A9BEC3;
+}
+.life_card .life_cont .field {
+  background-color: #B6C6D4;
+}
+.life_card .life_cont .fish {
+  background-color: #AFE2DA;
+}
+.life_card .life_cont .sunstroke {
+  background-color: #FF8A66;
+}
+.life_card .life_cont .cosmetics {
+  background-color: #E49D9E;
+}
+.life_card .life_cont .mood {
+  background-color: #3FFB4B;
+}
+.life_card .life_cont .morning {
+  background-color: #89C8DD;
+}
+.life_card .life_cont .exercise {
+  background-color: #E5D99D;
 }

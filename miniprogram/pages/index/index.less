@@ -233,7 +233,7 @@ page {
       height: 410rpx;
       width: 100%;
       margin: 0 auto;
-      background-color: #d69393;
+      background-color: #0aceff;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -666,8 +666,161 @@ page {
 
 // 生活卡片样式
 .life_card {
-  height: 300rpx;
+  height: 400rpx;
   width: 100%;
-  background-color: #33bdc2;
+  // background-color: #33bdc2;
   margin-bottom: 20rpx;
+
+  .life_cont {
+    height: 100%;
+    width: 100%;
+
+    .cont_swiper {
+      height: 100%;
+      width: 100%;
+
+      .cont_item {
+        height: 400rpx !important;
+        width: 100%;
+        background-color: #FFF;
+
+        .cont_grid {
+          height: 100%;
+          width: 100%;
+
+          .cont_box {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .icon {
+              height: 70rpx;
+              width: 70rpx;
+            }
+
+            text:nth-child(2) {
+              font-size: 26rpx;
+              color: #434343;
+              // margin-bottom: 5rpx;
+              line-height: 15rpx;
+            }
+
+            text:nth-child(3) {
+              color: #989898;
+              font-size: 19rpx;
+              line-height: 18rpx;
+            }
+          }
+        }
+      }
+    }
+
+    // 卡片样式
+    .preli_box {
+      height: auto;
+      width: 500rpx;
+      background-color: #ffffff;
+      border-radius: 15rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .title_box {
+        height: 115rpx;
+        width: 100%;
+        text-align: center;
+        font-size: 35rpx;
+        line-height: 115rpx;
+        color: #ffffff;
+      }
+
+      .preli_detail {
+        height: auto;
+        width: 85%;
+        margin-top: 50rpx;
+        margin-bottom: 35rpx;
+        font-size: 28rpx;
+        color: #616161;
+        line-height: 50rpx;
+      }
+
+      .perli_btn {
+        height: 85rpx;
+        width: 400rpx;
+        margin: 0 auto;
+        color: #ffffff;
+        border-radius: 10rpx;
+        border: none;
+        margin-bottom: 35rpx;
+        font-size: 30rpx;
+      }
+    }
+
+    // 类型样式
+    .conditioner {
+      background-color: #F5EC41;
+    }
+
+    .allergy {
+      background-color: #A5B1E0;
+    }
+
+    .car {
+      background-color: #B5E5A7;
+    }
+
+    .cold {
+      background-color: #21CEDA;
+    }
+
+    .clad {
+      background-color: #E2A9C8;
+    }
+
+    .influenza {
+      background-color: #E1CCA4;
+    }
+
+    .comfort {
+      background-color: #A6C896;
+    }
+
+    .air {
+      background-color: #C6A7AC;
+    }
+
+    .traffic {
+      background-color: #A9BEC3;
+    }
+
+    .field {
+      background-color: #B6C6D4;
+    }
+
+    .fish {
+      background-color: #AFE2DA;
+    }
+
+    .sunstroke {
+      background-color: #FF8A66;
+    }
+
+    .cosmetics {
+      background-color: #E49D9E;
+    }
+
+    .mood {
+      background-color: #3FFB4B;
+    }
+
+    .morning {
+      background-color: #89C8DD;
+    }
+
+    .exercise {
+      background-color: #E5D99D;
+    }
+  }
 }

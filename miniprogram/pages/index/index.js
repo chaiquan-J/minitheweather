@@ -47,6 +47,12 @@ Page({
     prelicolor: "",
     // 发布时间
     nonetime: "",
+    // 生活卡片
+    lifeshow: false,
+    // 卡片颜色
+    lifecolor: "",
+    // 卡片内容
+    lifeid: 0
   },
 
   /**
@@ -148,8 +154,10 @@ Page({
         preliminary = true;
       }
       // let newData;
+      // 把对象转成数组形式
       oldData.forecast_1h = Object.values(oldData.forecast_1h);
       oldData.forecast_24h = Object.values(oldData.forecast_24h);
+      oldData.index = Object.values(oldData.index);
 
       let len_1h = oldData.forecast_1h.length;
       let len_24h = oldData.forecast_24h.length;
@@ -444,7 +452,7 @@ Page({
     return a[dt.getDay()];
   },
 
-  // 顶部弹出层
+  // 打开弹出层
   showToppup: function () {
     this.setData({ topshow: true });
   },
@@ -452,7 +460,72 @@ Page({
   showPrelim: function () {
     this.setData({ prelimshow: true });
   },
-  // 顶部弹出层
+
+  showLife: function (e) {
+    let lifeid = e.currentTarget.dataset.id
+    let lifecolor;
+
+    // 筛选当前点击的是哪一条数据
+    switch (lifeid) {
+      case 0:
+        lifecolor = "conditioner"
+        break;
+      case 1:
+        lifecolor = "allergy"
+        break;
+      case 2:
+        lifecolor = "car"
+        break;
+      case 3:
+        lifecolor = "cold"
+        break;
+      case 4:
+        lifecolor = "clad"
+        break;
+      case 5:
+        lifecolor = "influenza"
+        break;
+      case 6:
+        lifecolor = "comfort"
+        break;
+      case 7:
+        lifecolor = "air"
+        break;
+      case 8:
+        lifecolor = "traffic"
+        break;
+      case 9:
+        lifecolor = "field"
+        break;
+      case 10:
+        lifecolor = "fish"
+        break;
+      case 11:
+        lifecolor = "sunstroke"
+        break;
+      case 12:
+        lifecolor = "cosmetics"
+        break;
+      case 13:
+        lifecolor = "mood"
+        break;
+      case 14:
+        lifecolor = "morning"
+        break;
+      case 15:
+        lifecolor = "exercise"
+        break;
+      default:
+        lifecolor = "conditioner"
+    }
+
+    this.setData({
+      lifeid: lifeid,
+      lifecolor: lifecolor,
+      lifeshow: true
+    });
+  },
+  // 打开弹出层
 
   // 关闭弹出层
   onClosetop: function () {
@@ -461,6 +534,10 @@ Page({
 
   onCloseprelim: function () {
     this.setData({ prelimshow: false });
+  },
+
+  onCloselife: function () {
+    this.setData({ lifeshow: false });
   },
   // 关闭弹出层
 
