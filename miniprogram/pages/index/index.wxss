@@ -6,7 +6,7 @@ page {
 .heard {
   height: 735rpx;
   width: 100%;
-  background-color: #43eb67;
+  background-color: #43ebeb;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,6 +191,12 @@ page {
 }
 .heard .blue {
   background-color: #7ca0ec;
+}
+.heard .red {
+  background-color: #ec7c7c;
+}
+.heard .orange {
+  background-color: #ff9318;
 }
 .heard .Popup_box {
   height: auto;

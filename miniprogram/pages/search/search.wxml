@@ -1,10 +1,33 @@
-<!-- <view wx:if="{{setInfo}}">
-    <image class="" src="{{userInfo.avatarUrl}}" mode="" lazy-load="false" binderror="" bindload="" />
-    <view>{{userInfo.nickName}}</view>
+<view class="content">
+    <van-sticky>
+        <view class="search">
+            <van-search value="" shape="round" bind:change="getValue" bind:cancel="backNav" background="#FFF" placeholder="请输入城市" show-action />
+        </view>
+    </van-sticky>
+    <block wx:if="{{searflg}}">
+        <view class="search_box">
+            <!-- <block > -->
+            <view class="searchnull" wx:if="{{searnull}}">咦，好像没有你要找的城市哟~，搜搜别的城市吧</view>
+            <!-- </block> -->
+            <block wx:else>
+                <view class="cont_box" wx:for="{{searchdata}}" wx:key="index" bindtap="searchCity" data-province="{{item.province}}" data-city="{{item.city}}">
+                    <view class="text">{{item.province}}</view>
+                    ,
+                    <view class="text">{{item.city}}</view>
+                </view>
+            </block>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="hotcity">
+            <view class="title">热门城市</view>
+            <view class="content">
+                <block wx:for="{{hotcity}}" wx:key="index">
+                    <view class="cont_box" bindtap="searchCity" data-city="{{item.city}}" data-province="{{item.province}}">
+                        {{item.city}}
+                    </view>
+                </block>
+            </view>
+        </view>
+    </block>
 </view>
-<view wx:else>
-    <van-button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        登陆授权
-    </van-button>
-</view> -->
-<view class="content"></view>

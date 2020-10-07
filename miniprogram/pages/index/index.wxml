@@ -2,8 +2,8 @@
 <van-toast id="van-toast" />
 <!-- 加载提示 -->
 <!-- 顶部大模块 -->
-<view class="heard" hover-class="none" hover-stop-propagation="false">
-    <view class="top_address" hover-class="none" hover-stop-propagation="false">
+<view class="heard">
+    <view class="top_address" bind:tap="navSearch">
         <view class="address_box">
             <van-icon name="location" size="35rpx" color="#ffff" custom-class="address_icon" />
             <view class="address_text">{{positionData.city}} {{positionData.district}}</view>

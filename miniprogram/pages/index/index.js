@@ -59,9 +59,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    utils.getUserstatus(this.formSubmit, this.setPositi);
+    console.log(options)
     this.hiddenTime();
     this.showToast();
+    if (JSON.stringify(options) == "{}") {
+      console.log(1)
+      utils.getUserstatus(this.formSubmit, this.setPositi);
+    } else {
+      console.log(2)
+      this.searchWeather(JSON.parse(options.position))
+    }
   },
 
   // 使用腾讯提供的方法把用户位置用文字显示
@@ -95,12 +102,16 @@ Page({
       success: (res) => {
         setfun(res.data.data, dataType);
       },
+      fail: (err) => {
+        console.log(err)
+      }
     });
   },
 
   // 处理位置数据
   setPositi: function (data) {
     // 位置数据放到data中保存
+    // console.log(data)
     this.setData({
       positionData: data,
     });
@@ -128,11 +139,44 @@ Page({
     // console.log(this.data.positionData);
   },
 
+  // 跳转搜索
+  navSearch: function () {
+    wx.navigateTo({
+      url: "/pages/search/search"
+    })
+  },
+
+  // 搜索时调用的方法
+  searchWeather: function (e) {
+    // console.log(e)
+    this.setData({
+      positionData: e
+    })
+
+    this.getApi(
+      e.city,
+      e.city,
+      "",
+      "observe|forecast_1h|forecast_24h|index|alarm|limit|tips|rise",
+      "weather",
+      this.setWeather
+    );
+    this.getApi(
+      e.city,
+      e.city,
+      "",
+      "air",
+      "weatherair",
+      this.setWeather
+    );
+  },
+
   // 处理天气数据
   setWeather: function (data, datatype) {
-    // console.log(data, datatype);
+    console.log(data, datatype);
     let oldData = data;
     let newData;
+    // 预警数据
     let preliminary = this.data.preliminary;
     let prelicolor = this.data.prelicolor;
     // 判断是空气质量还是天气数据
@@ -148,8 +192,12 @@ Page({
           case "黄色":
             prelicolor = "yellow";
             break;
-          default:
-            prelicolor = "blue";
+          case "橙色":
+            prelicolor = "orange";
+            break;
+          case "红色":
+            prelicolor = "red";
+            break;
         }
         preliminary = true;
       }
