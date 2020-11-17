@@ -66,7 +66,7 @@ Page({
       console.log(1)
       utils.getUserstatus(this.formSubmit, this.setPositi);
     } else {
-      console.log(2)
+      console.log(JSON.parse(options.position))
       this.searchWeather(JSON.parse(options.position))
     }
   },
@@ -148,13 +148,13 @@ Page({
 
   // 搜索时调用的方法
   searchWeather: function (e) {
-    // console.log(e)
+    console.log(e)
     this.setData({
       positionData: e
     })
 
     this.getApi(
-      e.city,
+      e.province,
       e.city,
       "",
       "observe|forecast_1h|forecast_24h|index|alarm|limit|tips|rise",
@@ -162,7 +162,7 @@ Page({
       this.setWeather
     );
     this.getApi(
-      e.city,
+      e.province,
       e.city,
       "",
       "air",
@@ -479,7 +479,7 @@ Page({
       // 如果是天气质量直接赋值 不需要处理
       newData = oldData;
     }
-    console.log(newData);
+    // console.log(newData);
     // console.log(newData.index);
     // 改变data中的数据
     this.setData({

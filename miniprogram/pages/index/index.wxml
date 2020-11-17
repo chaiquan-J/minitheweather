@@ -201,7 +201,7 @@
     </view>
     <view class="ontime_cont_box">
         <scroll-view class="cont_scroll" scroll-x="true">
-            <block wx:for="{{weather.forecast_1h}}" wx:key="{{index}}" wx:if="{{index < 25}}">
+            <block wx:for="{{weather.forecast_1h}}" wx:key="index" wx:if="{{index < 25}}">
                 <view class="cont_box">
                     <view class="forecast_box">
                         <view class="fore_time" wx:if="{{item.nwetimeh == 00}}">明天</view>
@@ -221,7 +221,7 @@
 <view class="date_forecast" hover-class="none" hover-stop-propagation="false">
     <view class="highesttemp_box">
         <view class="highesttemp_cont">
-            <block wx:for="{{weather.forecast_24h}}" wx:key="{{index}}" wx:if="{{index<6}}">
+            <block wx:for="{{weather.forecast_24h}}" wx:key="index" wx:if="{{index<6}}">
                 <view class="cont_box">
                     <view class="title_box">
                         <view wx:if="{{index == 0}}">昨天</view>
@@ -233,16 +233,16 @@
                         <view>{{item.month}}/{{item.date}}</view>
                     </view>
                     <view wx:if="{{index == 0}}" class="weather_text" style="color:#898989;">
-                        {{item.day_weather}}
+                        {{item.day_weather_short}}
                     </view>
-                    <view wx:else class="weather_text">{{item.day_weather}}</view>
+                    <view wx:else class="weather_text">{{item.day_weather_short}}</view>
                     <image class="weather_img" src="../../images/icon/{{item.dayimg}}-0.png" />
                 </view>
             </block>
         </view>
     </view>
     <view class="Polyline_box">
-        <block wx:for="{{weather.forecast_24h}}" wx:key="{{index}}" wx:if="{{index<6}}">
+        <block wx:for="{{weather.forecast_24h}}" wx:key="index" wx:if="{{index<6}}">
             <view class="Polyline_cont">
                 <view class="day">
                     <view class="ball"></view>
@@ -257,16 +257,16 @@
     </view>
     <view class="lowesttemp_box">
         <view class="lowesttemp_cont">
-            <block wx:for="{{weather.forecast_24h}}" wx:key="{{index}}" wx:if="{{index<6}}">
+            <block wx:for="{{weather.forecast_24h}}" wx:key="index" wx:if="{{index<6}}">
                 <view class="cont_box">
                     <view class="title_box">
                         <view>{{item.night_wind_direction}}</view>
                         <view>{{item.night_wind_power}}级</view>
                     </view>
                     <view wx:if="{{index == 0}}" class="weather_text" style="color:#898989;">
-                        {{item.night_weather}}
+                        {{item.night_weather_short}}
                     </view>
-                    <view wx:else class="weather_text">{{item.night_weather}}</view>
+                    <view wx:else class="weather_text">{{item.night_weather_short}}</view>
                     <image class="weather_img" src="../../images/icon/{{item.nightimg}}-1.png" />
                 </view>
             </block>
@@ -295,7 +295,7 @@
             </swiper-item>
             <swiper-item class="cont_item">
                 <van-grid custom-class="cont_grid" column-num="4" border="{{ false }}">
-                    <van-grid-item use-slot wx:for="{{ weather.index }}" wx:if="{{id>=8&&id<=15}}" wx:for-index="id">
+                    <van-grid-item use-slot wx:for="{{ weather.index }}" wx:if="{{id>=8&&id<=15}}" wx:for-index="id" wx:key="id">
                         <view class="cont_box" bindtap="showLife" data-id="{{id}}">
                             <image class="icon" src="../../images/icon/life/{{id}}.png" lazy-load="false" binderror="" bindload="" />
                             <text class="" selectable="false" space="false" decode="false">
